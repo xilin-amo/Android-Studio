@@ -1,0 +1,20 @@
+1、在build.gradle需要添加两行代码：
+implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'//用于添加SavedStateHandle的依赖
+androidTestImplementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.2.0'//用于添加ViewModel类使用的SaveState依赖
+
+2、在sharedpreferences.editor的putint之后还要apply才能保存进手机外部存储中
+
+3、保存数据一般在onPause()阶段进行，这个阶段一些非正常退出也能保存数据，而ondestory和onstop有时会被系统直接杀死不会保存数据，但也有弹幕说
+onpause也不要保存，因为在切屏时也会进行操作，会造成延迟，目前还没想到好办法。
+
+4、java的四种修饰符：public（全局） private（类中） protected（子类） 空修饰符（包中）
+
+5、所有资源文件最好写在res里分类，易于维护。
+
+6、在activity_main中呼叫函数使用@{()->function(arg)}
+
+7、avm=new ViewModelProvider(this,new SavedStateViewModelFactory(getApplication(),this)).get(AVM.class);
+目前最新的ViewModel类实例化的写法
+
+总的来说安卓开发更新换代速度还是很快的，经常进行接口和函数参数的改动，要经常看官方文档的英文说明才能知道现在该怎么写,希望我学习编程记笔记
+的习惯能保留下来吧
